@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<robot name="mi_robot_mesh">
+
+<link name="world"/>
+
+
+  <!-- ============================================== -->
+  <!-- 0. BASE FIJA NUEVA                             -->
+  <!-- ============================================== -->
+
+  <joint name="joint_base_fija" type="fixed">
+    <parent link="world"/>
+    <child link="base_fija_link"/>
+    <origin xyz="0.09374 0.0 0.0" rpy="0 0 1.57" />
+  </joint>
+
+  <link name="base_fija_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 3.141592 0" />
+      <geometry>
+        <mesh filename="package://movimientos_babotas/meshes/base_fija.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="gris_oscuro">
+        <color rgba="0.3 0.3 0.3 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- ============================================== -->
+  <!-- ARTICULACION BASE FIJA A CODO BASE             -->
+  <!-- ============================================== -->
+
+  <joint name="joint_base_fija_codo" type="revolute">
+    <parent link="base_fija_link"/>
+    <child link="codo_base_link"/>
+    <origin xyz="0 0.09374 0.015" rpy="0 0 -1.57" />
+    <axis xyz="0 0 1" />
+    <limit lower="-3.1416" upper="3.1416" effort="100.0" velocity="1.5"/>
+  </joint>
+
+  <link name="codo_base_link">
+    <visual>
+      <origin xyz="0 0.0 0" rpy="1.57 0 1.57" />
+      <geometry>
+        <mesh filename="package://movimientos_babotas/meshes/base_codo.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="naranja">
+        <color rgba="1.0 0.5 0.0 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- ============================================== -->
+  <!-- CODO BASE A CODO 1                             -->
+  <!-- ============================================== -->
+
+  <joint name="joint_codo1" type="revolute">
+    <parent link="codo_base_link"/>
+    <child link="codo1_link"/>
+    <origin xyz="0 0 0.04" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="-3.1416" upper="3.1416" effort="100.0" velocity="1.5"/>
+  </joint>
+
+  <link name="codo1_link">
+    <visual>
+      <origin xyz="-0.0146 0.05177 0" rpy="1.57 0 1.57" />
+      <geometry>
+        <mesh filename="package://movimientos_babotas/meshes/eslabon_parte1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="naranja">
+        <color rgba="1.0 0.5 0.0 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+
+  <!-- ============================================== -->
+  <!-- CODO 1 A CODO 2                                -->
+  <!-- ============================================== -->
+
+  <joint name="joint_codo2" type="revolute">
+    <parent link="codo1_link"/>
+    <child link="codo2_link"/>
+    <origin xyz="0 0.11 0.0" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="-3.1416" upper="3.1416" effort="100.0" velocity="1.5"/>
+  </joint>
+
+  <link name="codo2_link">
+    <visual>
+      <origin xyz="-0.0146 0.05177 0" rpy="1.57 0 1.57" />
+      <geometry>
+        <mesh filename="package://movimientos_babotas/meshes/eslabon_parte2.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="naranja">
+        <color rgba="1.0 0.5 0.0 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+
+
+</robot>
